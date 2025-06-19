@@ -1,0 +1,50 @@
+# Docker related files
+*.env
+.env
+.DS_Store
+docker-compose.override.yml
+# Volumes (database data)
+db_data/
+
+# WordPress core files (managed by Docker/Hostinger, not versioned by Git)
+wp-admin/
+wp-includes/
+index.php
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
+
+# WordPress content (only version your custom theme/plugins)
+wp-content/uploads/
+wp-content/cache/
+wp-content/plugins/*
+!wp-content/plugins/seu-plugin-personalizado/ # Se tiver um plugin customizado, descomente e adicione o nome da sua pasta
+wp-content/themes/*
+!wp-content/themes/seu-tema-personalizado/ # Descomente e adicione o nome da pasta do seu tema
+# (Remova os "!" e os nomes de pasta se você quiser versionar TODOS os plugins/temas, mas não é o ideal)
+
+# Log files
+*.log
+error.log
+debug.log
+
+# Backup files
+*.bak
+*.tmp
+*.swp
+*.sql # backups de banco de dados
+
+# IDE and OS specific files
+.idea/
+.vscode/
+Thumbs.db

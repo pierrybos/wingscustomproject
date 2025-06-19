@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:latest # Você pode especificar uma versão: wordpress:6.5-php8.2-apache
+    ports:
+      - "8000:80" # Acessível em http://localhost:8000 no seu navegador
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: sua_senha_wordpress_segura
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content # Persiste seus temas, plugins e uploads
+      # - ./wp-config.php:/var/www/html/wp-config.php # Opcional: para gerenciar wp-config.php externo
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:8.0 # Ou mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: sua_senha_root_mysql_segura
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: sua_senha_wordpress_segura
+    volumes:
+      - db_data:/var/lib/mysql # Persiste os dados do banco de dados
+    restart: always
+
+volumes:
+  db_data: {} # Declara o volume para o banco de dados
